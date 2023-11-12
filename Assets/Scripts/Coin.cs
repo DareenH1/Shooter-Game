@@ -27,7 +27,7 @@ public class Coin : MonoBehaviour
     {
         if(whatIHit.tag == "Player") 
     {
-        GameObject.Find("Gamemanager"). GetComponent<GameManager>().EarnScore(2);
+        GameObject.Find("Gamemanager"). GetComponent<GameManager>().EarnScore(1);
         Destroy(this.gameObject);
   
     }
