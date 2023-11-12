@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject enemyonePrefab;
     public GameObject cloudPrefab;
+    public GameObject CoinPrefab;
     public int score;
     public int cloudsMove;
     public TextMeshProUGUI scoreText;
