@@ -243,7 +243,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.28859615, g: 0.49894163, b: 0.7169812, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -322,6 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyOnePrefab: {fileID: 7201606874758202312, guid: 6698b5fd5a8e6e74b8c1f6d02dcaa99f, type: 3}
   enemyTwoPrefab: {fileID: 2797017133239190208, guid: c908956b719415241b05dce3d7b35742, type: 3}
+  cloudPrefab: {fileID: 3227573950603726248, guid: b09da76d13bb1ee4d90764dfe3c31dc0, type: 3}
 --- !u!4 &366129796
 Transform:
   m_ObjectHideFlags: 0
