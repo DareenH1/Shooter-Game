@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private float horizontalScreenLimit = 10f;
     private float verticalScreenLimit = 4f;
     public int lives;
+    private GameManager gameManager;
+    public TMPro.TextMeshProUGUI livesText; 
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +66,14 @@ public class Player : MonoBehaviour
             GameObject.Find("GameManager").GetComponent<GameManager>().GameOver();
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+        }
+        else
+        {
+            //Update the UI Text for lives
+            if (livesText  != null)
+            {
+                livesText.text = "lives: " + lives.ToString();
+            }
         }
     }
 }
