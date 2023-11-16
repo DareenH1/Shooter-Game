@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public int cloudsMove;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI LivesText;
+    public TextMeshProUGUI powerupText;
+    public GameObject[] thingsThatSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +24,11 @@ public class GameManager : MonoBehaviour
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
         CreateSky();
         InvokeRepeating("SpawnEnemyOne", 1f, 2f);
+        InvokeRepeating("SpawnSomething", 2f, 3f);
         cloudsMove = 1;
         score = 0;
         scoreText.text = "Score: " + score;
+        LivesText.text = "Lives: 3";
     }
 
     // Update is called once per frame
@@ -48,6 +52,13 @@ public class GameManager : MonoBehaviour
         
     }
 
+    void SpawnSomething()
+    {
+        int tempInt;
+        tempInt = Random.Range(0, 3);
+        Instantiate(thingsThatSpawn[tempInt], new Vector3(Random.Range(-8f, 8), Random.Range(-7f, 7f), 0), Quaternion.identity);
+    }
+
     public void GameOver()
     {
         CancelInvoke();
@@ -59,5 +70,16 @@ public class GameManager : MonoBehaviour
     {
         score = score + scoreToAdd;
         scoreText.text = "Score: " + score;
+    }
+
+    public void LivesChange(int currentlife)
+    {
+        LivesText.text = "Lives: " + currentlife;
+    }
+
+
+    public void PowerupChange(string whatPowerup)
+    {
+        powerupText.text = whatPowerup;
     }
 }
