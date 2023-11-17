@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public AudioClip powerdownSound;
     private bool betterWeapon;
     public GameObject thruster;
+    public GameObject shield;
 
     // Start is called before the first frame update
     void Start()
@@ -82,7 +83,16 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    public void GainShield()
+    {
+        
 
+    }
+    public void LoseShield()
+    {
+
+     
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.name)
@@ -127,6 +137,7 @@ public class Player : MonoBehaviour
                 {
                     //Shield Powerup
                     gM.GetComponent<GameManager>().PowerupChange("Shield");
+                    shield.SetActive(true);
                 }
                 break;
         }
