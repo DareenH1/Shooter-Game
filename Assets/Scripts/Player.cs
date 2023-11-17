@@ -14,7 +14,9 @@ public class Player : MonoBehaviour
     public AudioClip coinSound;
     public AudioClip healthSound;
     public AudioClip powerupSound;
+    public AudioClip powerdownSound;
     private bool betterWeapon;
+    public GameObject thruster;
 
     // Start is called before the first frame update
     void Start()
@@ -59,9 +61,9 @@ public class Player : MonoBehaviour
             Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         } else if(Input.GetKeyDown(KeyCode.Space) && betterWeapon)
         {
-            Instantiate(bulletPrefab, transform.position + new Vector3(0.5f, 1, 0), Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position + new Vector3(0.5f, 1, 0), Quaternion.Euler(0, 0, -45f)); ;
             Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-            Instantiate(bulletPrefab, transform.position + new Vector3(-0.5f, 1, 0), Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position + new Vector3(-0.5f, 1, 0), Quaternion.Euler(0, 0, 45f));
         }
     }
 
@@ -114,15 +116,17 @@ public class Player : MonoBehaviour
                 {
                     playerSpeed = playerSpeed * 10f;
                     StartCoroutine("SpeedPowerDown");
-                    gM.GetComponent<GameManager>().PowerupChange("Speed Upgrade");
+                    gM.GetComponent<GameManager>().PowerupChange("Speed");
+                    thruster.SetActive(true);
                 } else if (tempInt == 2)
                 {
                     betterWeapon = true;
                     StartCoroutine("WeaponPowerDown");
-                    gM.GetComponent<GameManager>().PowerupChange("Weapon Upgrade");
+                    gM.GetComponent<GameManager>().PowerupChange("Weapon");
                 } else if (tempInt == 3)
                 {
                     //Shield Powerup
+                    gM.GetComponent<GameManager>().PowerupChange("Shield");
                 }
                 break;
         }
@@ -131,13 +135,16 @@ public class Player : MonoBehaviour
     IEnumerator SpeedPowerDown ()
     {
         yield return new WaitForSeconds(4f);
+        AudioSource.PlayClipAtPoint(powerdownSound, transform.position);
         playerSpeed = 6f;
+        thruster.SetActive(false);
         gM.GetComponent<GameManager>().PowerupChange("No Powerup");
     }
 
     IEnumerator WeaponPowerDown()
     {
         yield return new WaitForSeconds(4f);
+        AudioSource.PlayClipAtPoint(powerdownSound, transform.position);
         betterWeapon = false;
         gM.GetComponent<GameManager>().PowerupChange("No Powerup");
     }

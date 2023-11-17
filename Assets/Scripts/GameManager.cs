@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI LivesText;
     public TextMeshProUGUI powerupText;
     public GameObject[] thingsThatSpawn;
+    public GameObject gameOverSet;
+    private bool isGameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -29,12 +32,16 @@ public class GameManager : MonoBehaviour
         score = 0;
         scoreText.text = "Score: " + score;
         LivesText.text = "Lives: 3";
+        isGameOver = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       if(Input.GetKeyDown(KeyCode.R) && isGameOver)
+        {
+            SceneManager.LoadScene("Mygameshooter");
+        } 
     }
 
     void SpawnEnemyOne()
@@ -63,6 +70,9 @@ public class GameManager : MonoBehaviour
     {
         CancelInvoke();
         cloudsMove = 0;
+        GetComponent<AudioSource>().Stop();
+        gameOverSet.SetActive(true);
+        isGameOver = true;
     }
 
 
