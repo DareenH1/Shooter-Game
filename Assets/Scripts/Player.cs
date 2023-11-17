@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private bool betterWeapon;
     public GameObject thruster;
     public GameObject shield;
+    private bool hasShield = false;
 
     // Start is called before the first frame update
     void Start()
@@ -85,13 +86,13 @@ public class Player : MonoBehaviour
     }
     public void GainShield()
     {
-        
-
+        hasShield = true;
+        shield.SetActive(true);
     }
     public void LoseShield()
     {
-
-     
+        hasShield = false;
+        shield.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -136,8 +137,21 @@ public class Player : MonoBehaviour
                 } else if (tempInt == 3)
                 {
                     //Shield Powerup
+                    GainShield();
                     gM.GetComponent<GameManager>().PowerupChange("Shield");
-                    shield.SetActive(true);
+                }
+                break;
+            case "Enemy(Clone)":
+                // Check if the player has a shield
+                if (hasShield)
+                {
+                    //Player has a shield, remove the shield without losing a life
+                    LoseShield();
+                }
+                else
+                {
+                    //Player doesn't have a shield, lose a life
+                    LoseLife();
                 }
                 break;
         }

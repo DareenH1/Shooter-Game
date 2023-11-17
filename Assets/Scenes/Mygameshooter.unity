@@ -926,7 +926,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 6526052062473262894, guid: 5bf23512a9edc6b4ba2988b05da640bd, type: 3}
   enemyonePrefab: {fileID: 6859474986371098232, guid: 6698b5fd5a8e6e74b8c1f6d02dcaa99f, type: 3}
   cloudPrefab: {fileID: 6395661785993063774, guid: b09da76d13bb1ee4d90764dfe3c31dc0, type: 3}
-  CoinPrefab: {fileID: 1658195405611219932, guid: 2cb825dbcc9495f41bfd129a0e969350, type: 3}
+  CoinPrefab: {fileID: 2724177858703665414, guid: 2cb825dbcc9495f41bfd129a0e969350, type: 3}
   score: 0
   cloudsMove: 0
   scoreText: {fileID: 1249705045}
